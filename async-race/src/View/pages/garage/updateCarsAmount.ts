@@ -1,5 +1,5 @@
 const updateCarsAmount = (carsAmount: number) => {
-  const pageTitle = document.querySelector('h1');
+  const pageTitle = document.querySelector('.cars_amount-title');
   if (pageTitle) {
     pageTitle.innerHTML = `Garage (<span class="cars_amount">${carsAmount}</span>)`;
   }

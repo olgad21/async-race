@@ -1,18 +1,16 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable import/extensions */
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import startApp from './View/app';
-import renderController from './View/pages/garage/renderController';
-import { strings } from './View/constants';
-import createCar from './API/createCar.api';
-import handleUpdateController from './View/pages/garage/handleUpdateController';
-import renderGarage from './View/pages/garage/garage';
-import renderRaceControllers from './View/pages/garage/renderRaceControllers';
 
-renderController(strings.updateBtn, handleUpdateController);
-renderController(strings.createBtn, createCar);
-renderRaceControllers();
-renderGarage();
+import renderHeader from './View/components/header';
+import renderGarageView from './View/pages/garage/renderGarageView';
+import renderWinners from './View/pages/winners/winners';
+
+renderHeader();
+renderGarageView();
+renderWinners();
 
 // startApp();

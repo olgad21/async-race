@@ -8,7 +8,7 @@ import './car.css';
 import controlCarEngine from '../../../API/controlCarEngine';
 import switchToDriveMode from '../../../API/switchToDriveMode';
 import moveCar, { stopCar } from './controlCar';
-// import handleDeleteController from './handleDeleteController';
+import { strings } from '../../constants';
 
 const renderBtn = (text: string, id: number) => {
   const btn = document.createElement('div');
@@ -18,7 +18,7 @@ const renderBtn = (text: string, id: number) => {
 };
 
 const renderSelectBtn = (id: number, name: string, color: string) => {
-  const selectBtn = renderBtn('Select', id);
+  const selectBtn = renderBtn(strings.selectBtn, id);
   selectBtn.addEventListener('click', () => {
     const updateBtn = document.querySelector('.update');
     updateBtn?.setAttribute('data-id', id.toString());
@@ -33,7 +33,7 @@ const renderSelectBtn = (id: number, name: string, color: string) => {
 };
 
 const renderRemoveBtn = (id: number) => {
-  const removeBtn = renderBtn('Remove', id);
+  const removeBtn = renderBtn(strings.removeBtn, id);
   removeBtn.addEventListener('click', async () => {
     await deleteCar(id);
     const prevCarsAmount = getCarsAmount();
@@ -71,11 +71,15 @@ const renderCar = (car: CarReceived) => {
 
   carButtons.append(selectBtn, removeBtn, carName);
 
-  const startController = document.createElement('div');
-  startController.classList.add('btn', 'green-btn', 'green-btn--active');
+  const startController = document.createElement('button');
+  startController.classList.add('btn', 'green-btn', 'start-btn');
   startController.innerHTML = 'A';
-  startController.addEventListener('click', async () => {
+  startController.addEventListener('click', async (e) => {
     try {
+      (e.target as HTMLButtonElement).disabled = true;
+      const stopControllerBtn = document.querySelector('.stop-btn');
+      (stopControllerBtn as HTMLButtonElement).disabled = false;
+
       const { distance, velocity } = await controlCarEngine(id, 'started');
       const time = (distance / velocity) / 1000;
       moveCar(id, time);
@@ -92,10 +96,13 @@ const renderCar = (car: CarReceived) => {
     }
   });
 
-  const stopController = document.createElement('div');
-  stopController.classList.add('btn', 'green-btn');
+  const stopController = document.createElement('button');
+  stopController.classList.add('btn', 'green-btn', 'stop-btn');
   stopController.innerHTML = 'B';
-  stopController.addEventListener('click', async () => {
+  stopController.addEventListener('click', async (e) => {
+    (e.target as HTMLButtonElement).disabled = true;
+    const startControllerBtn = document.querySelector('.start-btn');
+    (startControllerBtn as HTMLButtonElement).disabled = false;
     await controlCarEngine(id, 'stopped');
     stopCar(id);
   });

@@ -4,7 +4,6 @@ import host, { path } from '../View/constants';
 import CarCreated from '../Interface/CarCreated';
 import CarReceived from '../Interface/CarReceived';
 
-// отправка машин на сервер
 const getCars = async () => {
   const response = await fetch(`${host}${path.garage}`, {
     headers: {

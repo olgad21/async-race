@@ -9,8 +9,10 @@ import updateCarsAmount from './updateCarsAmount';
 type CreateCarType = (obj: CarCreated) => Promise<CarReceived>;
 
 const renderController = (name: string, callback: CreateCarType) => {
+  const garageView = document.querySelector('.garage') as HTMLDivElement;
+
   const carSettings = document.createElement('div');
-  document.body.prepend(carSettings);
+  garageView.prepend(carSettings);
 
   const createCarBtn = document.createElement('div');
   createCarBtn.classList.add('btn', 'btn-dark', `${name.toLowerCase()}`);

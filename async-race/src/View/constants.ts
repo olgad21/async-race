@@ -8,6 +8,13 @@ export const path = {
 export const strings = {
   createBtn: 'Create',
   updateBtn: 'Update',
+  selectBtn: 'Select',
+  removeBtn: 'Remove',
+  garageViewBtn: 'To Garage',
+  winnersViewBtn: 'To Winners',
+  startRaceBtn: 'Race',
+  resetBtn: 'Reset',
+  generateCarsBtn: 'Generate Cars',
 };
 
 export default host;
