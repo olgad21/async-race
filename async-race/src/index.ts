@@ -8,9 +8,11 @@ import { strings } from './View/constants';
 import createCar from './API/createCar.api';
 import handleUpdateController from './View/pages/garage/handleUpdateController';
 import renderGarage from './View/pages/garage/garage';
+import renderRaceControllers from './View/pages/garage/renderRaceControllers';
 
 renderController(strings.updateBtn, handleUpdateController);
 renderController(strings.createBtn, createCar);
+renderRaceControllers();
 renderGarage();
 
 // startApp();

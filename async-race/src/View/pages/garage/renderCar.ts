@@ -75,11 +75,21 @@ const renderCar = (car: CarReceived) => {
   startController.classList.add('btn', 'green-btn', 'green-btn--active');
   startController.innerHTML = 'A';
   startController.addEventListener('click', async () => {
-    const { distance, velocity } = await controlCarEngine(id, 'started');
-    const time = distance / velocity;
-    console.log(time);
-    moveCar(id, time);
-    // await switchToDriveMode(id);
+    try {
+      const { distance, velocity } = await controlCarEngine(id, 'started');
+      const time = (distance / velocity) / 1000;
+      moveCar(id, time);
+      await switchToDriveMode(id);
+    } catch (err) {
+      if ((err as Error).message === '500') {
+        const carBroken = document.querySelector(`[data-car-id='${id}']`) as HTMLDivElement | null;
+        if (carBroken) {
+          const computedStyle = window.getComputedStyle(carBroken);
+          const marginLeft = computedStyle.getPropertyValue('margin-left');
+          carBroken.style.marginLeft = marginLeft;
+        }
+      }
+    }
   });
 
   const stopController = document.createElement('div');
