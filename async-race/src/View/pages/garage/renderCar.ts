@@ -9,6 +9,7 @@ import controlCarEngine from '../../../API/controlCarEngine';
 import switchToDriveMode from '../../../API/switchToDriveMode';
 import moveCar, { stopCar } from './controlCar';
 import { strings } from '../../constants';
+import handleRemoveController from './handleDeleteController';
 
 const renderBtn = (text: string, id: number) => {
   const btn = document.createElement('div');
@@ -35,14 +36,7 @@ const renderSelectBtn = (id: number, name: string, color: string) => {
 const renderRemoveBtn = (id: number) => {
   const removeBtn = renderBtn(strings.removeBtn, id);
   removeBtn.addEventListener('click', async () => {
-    await deleteCar(id);
-    const prevCarsAmount = getCarsAmount();
-    const newCarsAmount = prevCarsAmount - 1;
-    updateCarsAmount(newCarsAmount);
-
-    const carDeleted = document.querySelector(`[data-container-id='${id}']`);
-    console.log(carDeleted);
-    carDeleted?.remove();
+    handleRemoveController(id);
   });
   return removeBtn;
 };

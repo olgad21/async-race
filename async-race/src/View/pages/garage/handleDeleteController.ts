@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import deleteCar from '../../../API/deleteCar.api';
-import getCars from '../../../API/getCars.api';
-// import renderCars from './renderCars';
-// import updateCarsAmount from './updateCarsAmount';
+import updateCarsAmount, { getCarsAmount } from './updateCarsAmount';
 
-const handleDeleteController = async (id: number) => {
+const handleRemoveController = async (id: number) => {
   await deleteCar(id);
-  // const cars = await getCars();
-  // renderCars(cars);
-  // updateCarsAmount(cars.length);
+  const prevCarsAmount = getCarsAmount();
+  const newCarsAmount = prevCarsAmount - 1;
+  updateCarsAmount(newCarsAmount);
+
+  const carDeleted = document.querySelector(`[data-container-id='${id}']`);
+  carDeleted?.remove();
 };
 
-export default handleDeleteController;
+export default handleRemoveController;

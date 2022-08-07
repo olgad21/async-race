@@ -7,7 +7,6 @@ import './garage.css';
 const renderGarage = async () => {
   const garageView = document.querySelector('.garage') as HTMLDivElement;
 
-  console.log(33333);
   const cars = await getCars();
   const itemsTotal = cars.length;
 
