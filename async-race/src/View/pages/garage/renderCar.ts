@@ -15,7 +15,7 @@ import handleStartController from './handleStartController';
 import handleStopController from './handleStopController';
 
 const renderBtn = (text: string, id: number) => {
-  const btn = document.createElement('div');
+  const btn = document.createElement('button');
   btn.classList.add('btn', 'btn-light');
   btn.innerHTML = text;
   return btn;
@@ -72,19 +72,20 @@ const renderCar = (car: CarReceived) => {
   startController.classList.add('btn', 'green-btn', 'start-btn');
   startController.innerHTML = 'A';
   startController.addEventListener('click', async (e) => {
-    (e.target as HTMLButtonElement).disabled = true;
-    const stopControllerBtn = document.querySelector('.stop-btn');
-    (stopControllerBtn as HTMLButtonElement).disabled = false;
-    await handleStartController(id); // TODO: баг - после стопа машины кнопка старт не рабочая у всех элементов кроме 1-го
+    const controller = e.target as HTMLButtonElement;
+    controller.disabled = true;
+    (controller.nextElementSibling as HTMLButtonElement).disabled = false;
+    await handleStartController(id);
   });
 
   const stopController = document.createElement('button');
   stopController.classList.add('btn', 'green-btn', 'stop-btn');
+  stopController.disabled = true;
   stopController.innerHTML = 'B';
   stopController.addEventListener('click', async (e) => {
-    (e.target as HTMLButtonElement).disabled = true;
-    const startControllerBtn = document.querySelector('.start-btn');
-    (startControllerBtn as HTMLButtonElement).disabled = false;
+    const controller = e.target as HTMLButtonElement;
+    controller.disabled = true;
+    (controller.previousElementSibling as HTMLButtonElement).disabled = false;
     handleStopController(id);
   });
 
