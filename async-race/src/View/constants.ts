@@ -15,6 +15,8 @@ export const strings = {
   startRaceBtn: 'Race',
   resetBtn: 'Reset',
   generateCarsBtn: 'Generate Cars',
+  prevBtn: 'Previous',
+  nextBtn: 'Next',
 };
 
 export default host;

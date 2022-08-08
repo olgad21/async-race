@@ -16,7 +16,6 @@ const renderCars = (cars: CarReceived[]) => {
     const renderedCar = renderCar(car);
     renderedCars.push(renderedCar);
   });
-  console.log(renderedCars[0], 333);
   carsContainer?.append(...renderedCars);
   return renderedCars;
 };

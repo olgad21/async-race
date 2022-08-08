@@ -2,13 +2,15 @@
 import renderCars from './renderCars';
 import getCars from '../../../API/getCars.api';
 import './garage.css';
+import renderPagination from './renderPagination';
+import store from '../../store';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const renderGarage = async () => {
   const garageView = document.querySelector('.garage') as HTMLDivElement;
 
-  const cars = await getCars();
-  const itemsTotal = cars.length;
+  const cars = await getCars(1, 7);
+  const itemsTotal = store.carsCount;
 
   const carsContainer = document.createElement('div');
   carsContainer.classList.add('cars-container');
@@ -20,13 +22,14 @@ const renderGarage = async () => {
   pageTitle.classList.add('cars_amount-title');
   garageView.prepend(pageTitle);
   pageTitle.innerHTML = `Garage (<span class="cars_amount">${itemsTotal}</span>)`;
-  const pageNumber = 1;
+  const pageNumber = store.page;
 
   const page = document.createElement('h2');
-  page.innerHTML = `Page #${pageNumber}`;
+  page.innerHTML = `Page #<span class="page-number">${pageNumber}</span>`;
   pageTitle.after(page);
 
-  // pagination
+  const pagination = renderPagination();
+  garageView.append(pagination);
 };
 
 export default renderGarage;

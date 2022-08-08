@@ -3,6 +3,7 @@
 import createCar from '../../../API/createCar.api';
 import getCars from '../../../API/getCars.api';
 import { strings } from '../../constants';
+import store from '../../store';
 import generateRandomCars from './generateRandomCars';
 import renderCars from './renderCars';
 import updateCarsAmount from './updateCarsAmount';
@@ -31,9 +32,9 @@ const renderGenerateCarsBtn = () => {
     randomCars.forEach(async (car) => {
       await createCar(car);
     });
-    const cars = await getCars();
+    const cars = await getCars(1, 7);
     renderCars(cars);
-    updateCarsAmount(cars.length);
+    updateCarsAmount(store.carsCount);
   });
   return generateCarsBtn;
 };

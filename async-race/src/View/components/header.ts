@@ -45,7 +45,6 @@ const renderWinnersViewBtn = (header: HTMLElement) => {
 const renderHeader = () => {
   const header = document.createElement('header');
   document.body.prepend(header);
-  console.log('header');
   renderGarageViewBtn(header);
   renderWinnersViewBtn(header);
 };

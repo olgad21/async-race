@@ -4,6 +4,7 @@ import CarReceived from '../../../Interface/CarReceived';
 import renderCars from './renderCars';
 import getCars from '../../../API/getCars.api';
 import updateCarsAmount from './updateCarsAmount';
+import store from '../../store';
 // отрисовка элементов
 
 type CreateCarType = (obj: CarCreated) => Promise<CarReceived>;
@@ -32,9 +33,9 @@ const renderController = (name: string, callback: CreateCarType) => {
       name: carName.value,
       color: carColor.value,
     });
-    const cars = await getCars();
+    const cars = await getCars(1, 7);
     renderCars(cars);
-    updateCarsAmount(cars.length);
+    updateCarsAmount(store.carsCount);
   });
 };
 
