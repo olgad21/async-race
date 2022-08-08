@@ -6,6 +6,7 @@ import { strings } from '../../constants';
 import store from '../../store';
 import generateRandomCars from './generateRandomCars';
 import renderCars from './renderCars';
+import startRace, { stopRace } from './controlRace';
 import updateCarsAmount from './updateCarsAmount';
 
 const renderRaceController = (text: string) => {
@@ -17,11 +18,25 @@ const renderRaceController = (text: string) => {
 
 const renderStartRaceBtn = () => {
   const startRaceBtn = renderRaceController(strings.startRaceBtn);
+  startRaceBtn.classList.add('start-race');
+  startRaceBtn.addEventListener('click', (e) => {
+    (e.target as HTMLButtonElement).disabled = true;
+    const stopRaceButton = document.querySelector('.reset-race');
+    (stopRaceButton as HTMLButtonElement).disabled = false;
+    startRace();
+  });
   return startRaceBtn;
 };
 
 const renderResetBtn = () => {
   const resetBtn = renderRaceController(strings.resetBtn);
+  resetBtn.classList.add('reset-race');
+  resetBtn.addEventListener('click', (e) => {
+    (e.target as HTMLButtonElement).disabled = true;
+    const startRaceButton = document.querySelector('.start-race');
+    (startRaceButton as HTMLButtonElement).disabled = false;
+    stopRace();
+  });
   return resetBtn;
 };
 
@@ -32,7 +47,7 @@ const renderGenerateCarsBtn = () => {
     randomCars.forEach(async (car) => {
       await createCar(car);
     });
-    const cars = await getCars(1, 7);
+    const cars = await getCars(store.page, 7);
     renderCars(cars);
     updateCarsAmount(store.carsCount);
   });

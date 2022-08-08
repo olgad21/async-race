@@ -44,7 +44,7 @@ const generateName = () => {
 
 const generateColor = () => colors[Math.floor(Math.random() * colors.length)];
 
-const generateRandomCars = (count = 20) => {
+const generateRandomCars = (count = 100) => {
   const randomCars: CarCreated[] = new Array(count).fill(1);
   randomCars.forEach((_, i) => {
     randomCars[i] = { name: generateName(), color: generateColor() };

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -10,6 +11,8 @@ import switchToDriveMode from '../../../API/switchToDriveMode';
 import moveCar, { stopCar } from './controlCar';
 import { strings } from '../../constants';
 import handleRemoveController from './handleDeleteController';
+import handleStartController from './handleStartController';
+import handleStopController from './handleStopController';
 
 const renderBtn = (text: string, id: number) => {
   const btn = document.createElement('div');
@@ -69,25 +72,10 @@ const renderCar = (car: CarReceived) => {
   startController.classList.add('btn', 'green-btn', 'start-btn');
   startController.innerHTML = 'A';
   startController.addEventListener('click', async (e) => {
-    try {
-      (e.target as HTMLButtonElement).disabled = true;
-      const stopControllerBtn = document.querySelector('.stop-btn');
-      (stopControllerBtn as HTMLButtonElement).disabled = false;
-
-      const { distance, velocity } = await controlCarEngine(id, 'started');
-      const time = (distance / velocity) / 1000;
-      moveCar(id, time);
-      await switchToDriveMode(id);
-    } catch (err) {
-      if ((err as Error).message === '500') {
-        const carBroken = document.querySelector(`[data-car-id='${id}']`) as HTMLDivElement | null;
-        if (carBroken) {
-          const computedStyle = window.getComputedStyle(carBroken);
-          const marginLeft = computedStyle.getPropertyValue('margin-left');
-          carBroken.style.marginLeft = marginLeft;
-        }
-      }
-    }
+    (e.target as HTMLButtonElement).disabled = true;
+    const stopControllerBtn = document.querySelector('.stop-btn');
+    (stopControllerBtn as HTMLButtonElement).disabled = false;
+    await handleStartController(id); // TODO: баг - после стопа машины кнопка старт не рабочая у всех элементов кроме 1-го
   });
 
   const stopController = document.createElement('button');
@@ -97,8 +85,7 @@ const renderCar = (car: CarReceived) => {
     (e.target as HTMLButtonElement).disabled = true;
     const startControllerBtn = document.querySelector('.start-btn');
     (startControllerBtn as HTMLButtonElement).disabled = false;
-    await controlCarEngine(id, 'stopped');
-    stopCar(id);
+    handleStopController(id);
   });
 
   const carBody = document.createElement('div');

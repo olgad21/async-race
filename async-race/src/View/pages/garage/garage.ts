@@ -9,7 +9,7 @@ import store from '../../store';
 const renderGarage = async () => {
   const garageView = document.querySelector('.garage') as HTMLDivElement;
 
-  const cars = await getCars(1, 7);
+  const cars = await getCars(store.page, 7);
   const itemsTotal = store.carsCount;
 
   const carsContainer = document.createElement('div');

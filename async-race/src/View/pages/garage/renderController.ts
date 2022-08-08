@@ -33,7 +33,7 @@ const renderController = (name: string, callback: CreateCarType) => {
       name: carName.value,
       color: carColor.value,
     });
-    const cars = await getCars(1, 7);
+    const cars = await getCars(store.page, 7);
     renderCars(cars);
     updateCarsAmount(store.carsCount);
   });
