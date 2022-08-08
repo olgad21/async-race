@@ -1,20 +1,13 @@
-/* eslint-disable max-len */
-/* eslint-disable import/no-cycle */
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import deleteCar from '../../../API/deleteCar.api';
 import CarReceived from '../../../Interface/CarReceived';
-import updateCarsAmount, { getCarsAmount } from './updateCarsAmount';
 import './car.css';
-import controlCarEngine from '../../../API/controlCarEngine';
-import switchToDriveMode from '../../../API/switchToDriveMode';
-import moveCar, { stopCar } from './controlCar';
 import { strings } from '../../constants';
 import handleRemoveController from './handleDeleteController';
 import handleStartController from './handleStartController';
 import handleStopController from './handleStopController';
+import store from '../../store';
+import renderCarImage from './renderCarImage';
 
-const renderBtn = (text: string, id: number) => {
+const renderBtn = (text: string) => {
   const btn = document.createElement('button');
   btn.classList.add('btn', 'btn-light');
   btn.innerHTML = text;
@@ -22,7 +15,7 @@ const renderBtn = (text: string, id: number) => {
 };
 
 const renderSelectBtn = (id: number, name: string, color: string) => {
-  const selectBtn = renderBtn(strings.selectBtn, id);
+  const selectBtn = renderBtn(strings.selectBtn);
   selectBtn.addEventListener('click', () => {
     const updateBtn = document.querySelector('.update');
     updateBtn?.setAttribute('data-id', id.toString());
@@ -37,7 +30,7 @@ const renderSelectBtn = (id: number, name: string, color: string) => {
 };
 
 const renderRemoveBtn = (id: number) => {
-  const removeBtn = renderBtn(strings.removeBtn, id);
+  const removeBtn = renderBtn(strings.removeBtn);
   removeBtn.addEventListener('click', async () => {
     handleRemoveController(id);
   });
@@ -90,10 +83,19 @@ const renderCar = (car: CarReceived) => {
   });
 
   const carBody = document.createElement('div');
-  carBody.style.backgroundColor = color;
+  const carImage = renderCarImage(color);
+  carBody.innerHTML = carImage;
+
   carBody.classList.add('car-body');
   carBody.setAttribute('data-car-id', id.toString());
-  carBody.innerHTML = 'CAR';
+  carBody.addEventListener('transitionend', () => {
+    const time = carBody.style.transitionDuration.slice(0, -1);
+    if (carBody.style.marginLeft === '96%') {
+      store.winners.push({ id, wins: 1, time: +time });
+      return store.winners;
+    }
+    return store.winners;
+  });
 
   const carTrack = document.createElement('div');
   carTrack.classList.add('car-track');
@@ -102,8 +104,6 @@ const renderCar = (car: CarReceived) => {
 
   const flag = document.createElement('div');
   flag.classList.add('flag');
-  flag.style.backgroundColor = 'red';
-  flag.innerHTML = 'FLAG';
 
   carControllers.append(startController, stopController, carTrack);
   trackWrapper.append(carControllers, flag);

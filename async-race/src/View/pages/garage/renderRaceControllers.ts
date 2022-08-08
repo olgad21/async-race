@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import createCar from '../../../API/createCar.api';
 import getCars from '../../../API/getCars.api';
 import { strings } from '../../constants';
@@ -19,7 +17,7 @@ const renderRaceController = (text: string) => {
 const renderStartRaceBtn = () => {
   const startRaceBtn = renderRaceController(strings.startRaceBtn);
   startRaceBtn.classList.add('start-race');
-  startRaceBtn.addEventListener('click', (e) => {
+  startRaceBtn.addEventListener('click', async (e) => {
     (e.target as HTMLButtonElement).disabled = true;
     const stopRaceButton = document.querySelector('.reset-race');
     (stopRaceButton as HTMLButtonElement).disabled = false;

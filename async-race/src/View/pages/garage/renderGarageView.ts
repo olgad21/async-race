@@ -5,7 +5,7 @@ import handleUpdateController from './handleUpdateController';
 import renderController from './renderController';
 import renderRaceControllers from './renderRaceControllers';
 
-const renderGarageView = () => {
+const renderGarageView = async () => {
   const header = document.querySelector('header');
   const garageView = document.createElement('div');
   garageView.classList.add('garage');

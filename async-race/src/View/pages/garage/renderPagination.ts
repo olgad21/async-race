@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import getCars from '../../../API/getCars.api';
 import { strings } from '../../constants';
 import store from '../../store';
@@ -37,7 +36,7 @@ const renderPagination = () => {
   const prevBtn = renderPrevBtn();
 
   const handler = () => {
-    if (Math.floor(store.carsCount / 7) === store.page) {
+    if (Math.ceil(store.carsCount / 7) === store.page) {
       nextBtn.disabled = true;
     } else {
       nextBtn.disabled = false;

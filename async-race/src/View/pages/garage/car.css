@@ -1,9 +1,16 @@
 .car__wrapper {
+  width: 100%;
   border: solid black;
 }
 
 .car-buttons {
   display: flex;
+}
+
+.car-track-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .car-track-controllers {
@@ -12,19 +19,14 @@
   justify-content: flex-start;
 }
 
-.car-track-wrapper {
-  display: flex;
-  justify-content: space-between;
-}
-
 .car-track {
   width: 100%;
   position: relative;
 }
 
 .car-body {
-  width: 3rem;
-  height: 3rem;
+  width: 8rem;
+  height: 4rem;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -33,5 +35,14 @@
 
 .green-btn {
   border: solid green;
+}
+
+.flag {
+  background: url('../../../assets/red-flag (1).png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 5rem;
+  height: 5rem;
+  transform: translateX(-4rem);
 }
 

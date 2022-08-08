@@ -1,11 +1,9 @@
-/* eslint-disable no-console */
 import CarCreated from '../../../Interface/CarCreated';
 import CarReceived from '../../../Interface/CarReceived';
 import renderCars from './renderCars';
 import getCars from '../../../API/getCars.api';
 import updateCarsAmount from './updateCarsAmount';
 import store from '../../store';
-// отрисовка элементов
 
 type CreateCarType = (obj: CarCreated) => Promise<CarReceived>;
 

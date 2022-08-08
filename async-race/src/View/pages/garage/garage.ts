@@ -1,11 +1,9 @@
-/* eslint-disable no-console */
 import renderCars from './renderCars';
 import getCars from '../../../API/getCars.api';
 import './garage.css';
 import renderPagination from './renderPagination';
 import store from '../../store';
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 const renderGarage = async () => {
   const garageView = document.querySelector('.garage') as HTMLDivElement;
 
@@ -30,6 +28,8 @@ const renderGarage = async () => {
 
   const pagination = renderPagination();
   garageView.append(pagination);
+
+  // detectWinner();
 };
 
 export default renderGarage;

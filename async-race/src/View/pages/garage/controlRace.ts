@@ -2,7 +2,7 @@ import store from '../../store';
 import handleStartController from './handleStartController';
 import handleStopController from './handleStopController';
 
-const startRace = () => {
+const startRace = async () => {
   const { cars } = store;
   cars.forEach(async (car) => {
     const { id } = car;

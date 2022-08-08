@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/indent */
-/* eslint-disable no-console */
 import renderCar from './renderCar';
 import CarReceived from '../../../Interface/CarReceived';
 

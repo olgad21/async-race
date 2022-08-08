@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import deleteCar from '../../../API/deleteCar.api';
 import updateCarsAmount, { getCarsAmount } from './updateCarsAmount';
 

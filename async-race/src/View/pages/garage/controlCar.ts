@@ -1,8 +1,7 @@
-/* eslint-disable no-console */
 const moveCar = (id: number, time: number) => {
   const car = document.querySelector(`[data-car-id='${id}']`) as HTMLDivElement | null;
   if (car) {
-    car.style.marginLeft = '100%';
+    car.style.marginLeft = '96%';
     car.style.transitionDuration = `${time.toString()}s`;
   }
 };
