@@ -5,14 +5,14 @@ type StoreType = {
   page: number,
   carsCount: number,
   cars: CarReceived[],
-  winners: WinnerReceived[],
+  winner: WinnerReceived[],
 };
 
 const store: StoreType = {
   page: 1,
   carsCount: 0,
   cars: [],
-  winners: [],
+  winner: [],
 };
 
 export default store;

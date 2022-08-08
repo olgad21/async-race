@@ -1,5 +1,5 @@
 export default interface WinnerReceived {
-  id: number,
+  id?: number,
   wins: number,
   time: number
 }

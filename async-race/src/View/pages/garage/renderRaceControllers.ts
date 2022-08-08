@@ -18,6 +18,7 @@ const renderStartRaceBtn = () => {
   const startRaceBtn = renderRaceController(strings.startRaceBtn);
   startRaceBtn.classList.add('start-race');
   startRaceBtn.addEventListener('click', async (e) => {
+    store.winner = [];
     (e.target as HTMLButtonElement).disabled = true;
     const stopRaceButton = document.querySelector('.reset-race');
     (stopRaceButton as HTMLButtonElement).disabled = false;
@@ -30,6 +31,7 @@ const renderResetBtn = () => {
   const resetBtn = renderRaceController(strings.resetBtn);
   resetBtn.classList.add('reset-race');
   resetBtn.addEventListener('click', (e) => {
+    store.winner = [];
     (e.target as HTMLButtonElement).disabled = true;
     const startRaceButton = document.querySelector('.start-race');
     (startRaceButton as HTMLButtonElement).disabled = false;
