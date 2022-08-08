@@ -7,10 +7,10 @@ import startApp from './View/app';
 
 import renderHeader from './View/components/header';
 import renderGarageView from './View/pages/garage/renderGarageView';
-import renderWinners from './View/pages/winners/winners';
+import renderWinnersView from './View/pages/winners/renderWinnersView';
 
 renderHeader();
 renderGarageView();
-renderWinners();
+renderWinnersView();
 
 // startApp();

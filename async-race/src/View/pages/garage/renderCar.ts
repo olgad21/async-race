@@ -11,7 +11,7 @@ import renderCarImage from './renderCarImage';
 import createWinner from '../../../API/createWinner';
 import getWinners from '../../../API/getWinners';
 import updateWinner from '../../../API/updateWinner';
-import storeWinners from './handleWinners';
+import handleWinners from './handleWinners';
 
 const renderBtn = (text: string) => {
   const btn = document.createElement('button');
@@ -95,27 +95,11 @@ const renderCar = (car: CarReceived) => {
   carBody.classList.add('car-body');
   carBody.setAttribute('data-car-id', id.toString());
   carBody.addEventListener('transitionend', async () => {
-    await storeWinners(carBody, id);
-    // const time = carBody.style.transitionDuration.slice(0, -1);
-    // if (carBody.style.marginLeft === '96%') {
-    //   if (!store.winner.length) {
-    //     store.winner.push({ id, wins: 1, time: +time });
-    //     console.log(store.winner);
-    //     const winners = await getWinners();
-    //     const winner = winners.find((win) => win.id === id);
-    //     if (winner) {
-    //       await updateWinner({ wins: winner.wins + 1, time: +time }, id);
-    //     } else {
-    //       await createWinner(store.winner[0]);
-    //     }
-    //   }
-    // }
-    // return store.winner;
+    await handleWinners(carBody, id);
   });
 
   const carTrack = document.createElement('div');
   carTrack.classList.add('car-track');
-  carTrack.style.width = '100%';
   carTrack.append(carBody);
 
   const flag = document.createElement('div');

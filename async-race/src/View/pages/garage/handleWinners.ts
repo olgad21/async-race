@@ -1,12 +1,17 @@
 /* eslint-disable no-console */
 import createWinner from '../../../API/createWinner';
+import getCar from '../../../API/getCar.api';
 import getWinners from '../../../API/getWinners';
 import updateWinner from '../../../API/updateWinner';
 import store from '../../store';
+import renderWinners from '../winners/renderWinners';
+import updateWinnersAmount from '../winners/updateWinnersAmount';
 import showWinnerMessage from './showWinnerMessage';
 
 const handleWinners = async (carBody: HTMLDivElement, id: number) => {
   const time = carBody.style.transitionDuration.slice(0, -1);
+  const carWinner = await getCar(id);
+
   if (carBody.style.marginLeft === '96%') {
     if (!store.winner.length) {
       store.winner.push({ id, wins: 1, time: +time });
@@ -17,7 +22,9 @@ const handleWinners = async (carBody: HTMLDivElement, id: number) => {
       } else {
         await createWinner(store.winner[0]);
       }
-      showWinnerMessage(id, +time);
+      showWinnerMessage(carWinner.name, +time);
+      renderWinners(await getWinners());
+      updateWinnersAmount();
     }
   }
   return store.winner;

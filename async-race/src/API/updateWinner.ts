@@ -2,8 +2,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import host, { path } from '../View/constants';
 import WinnerReceived from '../Interface/WinnerReceived';
+import WinnerCreated from '../Interface/WinnerCreated';
 
-const updateWinner = async (car: WinnerReceived, id: number): Promise<WinnerReceived> => {
+const updateWinner = async (car: WinnerCreated, id: number): Promise<WinnerReceived> => {
   const response = await fetch(`${host}${path.winners}/${id}`, {
     headers: {
       'Content-Type': 'application/json',

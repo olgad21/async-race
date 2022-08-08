@@ -1,0 +1,10 @@
+.winner-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.winner-wrapper > div {
+  width: 15%;
+  border: 1px black solid;
+  text-align: center;
+}

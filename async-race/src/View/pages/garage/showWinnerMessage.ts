@@ -1,11 +1,9 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/quotes */
-import getCar from "../../../API/getCar.api";
+//  import getCar from "../../../API/getCar.api";
 
-const showWinnerMessage = async (id: number, time: number) => {
-  const carWinner = await getCar(id);
-  const message = `${carWinner.name} won (${time}s)`;
-  console.log(message);
+const showWinnerMessage = async (name: string, time: number) => {
+  const message = `${name} won (${time}s)`;
 
   const winnerPopup = document.createElement('div');
   document.body.append(winnerPopup);

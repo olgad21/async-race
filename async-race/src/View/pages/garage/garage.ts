@@ -28,8 +28,6 @@ const renderGarage = async () => {
 
   const pagination = renderPagination();
   garageView.append(pagination);
-
-  // detectWinner();
 };
 
 export default renderGarage;

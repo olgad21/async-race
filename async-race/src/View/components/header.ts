@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { strings } from '../constants';
+import updateWinnersAmount from '../pages/winners/updateWinnersAmount';
 import '../view.css';
 
 const renderViewBtn = (text: string) => {
@@ -39,6 +40,7 @@ const renderWinnersViewBtn = (header: HTMLElement) => {
     (e.target as HTMLButtonElement).disabled = true;
     const garageBtn = document.querySelector('.garage-btn');
     (garageBtn as HTMLButtonElement).disabled = false;
+    updateWinnersAmount();
   });
 };
 

@@ -6,6 +6,7 @@ type StoreType = {
   carsCount: number,
   cars: CarReceived[],
   winner: WinnerReceived[],
+  winnersCount: number,
 };
 
 const store: StoreType = {
@@ -13,6 +14,7 @@ const store: StoreType = {
   carsCount: 0,
   cars: [],
   winner: [],
+  winnersCount: 0,
 };
 
 export default store;
