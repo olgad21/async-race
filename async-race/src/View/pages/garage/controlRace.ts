@@ -3,16 +3,16 @@ import handleStartController from './handleStartController';
 import handleStopController from './handleStopController';
 
 const startRace = async () => {
-  const { cars } = store;
-  cars.forEach(async (car) => {
+  const { carsOnPage } = store;
+  carsOnPage.forEach(async (car) => {
     const { id } = car;
     await handleStartController(id);
   });
 };
 
 export const stopRace = () => {
-  const { cars } = store;
-  cars.forEach(async (car) => {
+  const { carsOnPage } = store;
+  carsOnPage.forEach(async (car) => {
     const { id } = car;
     await handleStopController(id);
   });

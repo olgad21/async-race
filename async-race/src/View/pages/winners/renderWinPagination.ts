@@ -1,7 +1,7 @@
-import getCars from '../../../API/getCars.api';
+import getWinners from '../../../API/getWinners';
 import { strings } from '../../constants';
 import store from '../../store';
-import renderCars from './renderCars';
+import renderWinners from './renderWinners';
 
 const paginationBtn = (text: string) => {
   const btn = document.createElement('button');
@@ -12,9 +12,9 @@ const paginationBtn = (text: string) => {
 const renderNextBtn = () => {
   const nextBtn = paginationBtn(strings.nextBtn);
   nextBtn.addEventListener('click', async () => {
-    store.page += 1;
-    const carsOnNextPage = await getCars(store.page, 7);
-    renderCars(carsOnNextPage);
+    store.winnersPage += 1;
+    const winnersonNextPage = await getWinners(store.winnersPage, 10);
+    renderWinners(winnersonNextPage);
   });
   return nextBtn;
 };
@@ -23,33 +23,33 @@ const renderPrevBtn = () => {
   const prevBtn = paginationBtn(strings.prevBtn);
   prevBtn.disabled = true;
   prevBtn.addEventListener('click', async () => {
-    store.page -= 1;
-    const carsOnPrevPage = await getCars(store.page, 7);
-    renderCars(carsOnPrevPage);
+    store.winnersPage -= 1;
+    const winnersOnPrevPage = await getWinners(store.winnersPage, 10);
+    renderWinners(winnersOnPrevPage);
   });
   return prevBtn;
 };
 
-const renderPagination = () => {
+const renderWinPagination = () => {
   const paginationWrapper = document.createElement('div');
   const nextBtn = renderNextBtn();
   const prevBtn = renderPrevBtn();
 
   const handler = () => {
-    if (Math.ceil(store.carsCount / 7) === store.page) {
+    if (Math.ceil(store.winnersCount / 10) === store.winnersPage) {
       nextBtn.disabled = true;
     } else {
       nextBtn.disabled = false;
     }
 
-    if (store.page === 1) {
+    if (store.winnersPage === 1) {
       prevBtn.disabled = true;
     } else {
       prevBtn.disabled = false;
     }
-    const pageNumber = document.querySelector('.page-number');
+    const pageNumber = document.querySelector('.winners-page-number');
     if (pageNumber) {
-      pageNumber.innerHTML = store.page.toString();
+      pageNumber.innerHTML = store.winnersPage.toString();
     }
   };
 
@@ -65,4 +65,4 @@ const renderPagination = () => {
   return paginationWrapper;
 };
 
-export default renderPagination;
+export default renderWinPagination;

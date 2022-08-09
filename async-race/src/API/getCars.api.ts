@@ -17,7 +17,13 @@ const getCars = async (page?: number, limit?: number) => {
   });
   store.carsCount = Number(response.headers.get('x-total-count'));
   const carsData: CarReceived[] = await response.json();
-  store.cars = carsData;
+
+  if (page || limit) {
+    store.carsOnPage = carsData;
+  } else {
+    store.cars = carsData;
+  }
+
   return carsData;
 };
 

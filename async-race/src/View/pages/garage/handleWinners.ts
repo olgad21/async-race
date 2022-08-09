@@ -23,7 +23,7 @@ const handleWinners = async (carBody: HTMLDivElement, id: number) => {
         await createWinner(store.winner[0]);
       }
       showWinnerMessage(carWinner.name, +time);
-      renderWinners(await getWinners());
+      renderWinners(await getWinners(store.winnersPage, 10));
       updateWinnersAmount();
     }
   }
