@@ -1,7 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/quotes */
-//  import getCar from "../../../API/getCar.api";
-
 const showWinnerMessage = async (name: string, time: number) => {
   const message = `${name} won (${time}s)`;
 

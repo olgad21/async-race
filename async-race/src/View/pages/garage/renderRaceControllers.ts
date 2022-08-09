@@ -1,6 +1,6 @@
 import createCar from '../../../API/createCar.api';
 import getCars from '../../../API/getCars.api';
-import { strings } from '../../constants';
+import { limits, strings } from '../../constants';
 import store from '../../store';
 import generateRandomCars from './generateRandomCars';
 import renderCars from './renderCars';
@@ -9,7 +9,7 @@ import updateCarsAmount from './updateCarsAmount';
 
 const renderRaceController = (text: string) => {
   const btn = document.createElement('button');
-  btn.classList.add('btn', 'btn-green', 'race-btn');
+  btn.classList.add('btn', 'btn-info', 'race-btn');
   btn.innerHTML = text;
   return btn;
 };
@@ -30,6 +30,7 @@ const renderStartRaceBtn = () => {
 const renderResetBtn = () => {
   const resetBtn = renderRaceController(strings.resetBtn);
   resetBtn.classList.add('reset-race');
+  resetBtn.disabled = true;
   resetBtn.addEventListener('click', (e) => {
     store.winner = [];
     (e.target as HTMLButtonElement).disabled = true;
@@ -47,7 +48,7 @@ const renderGenerateCarsBtn = () => {
     randomCars.forEach(async (car) => {
       await createCar(car);
     });
-    const cars = await getCars(store.page, 7);
+    const cars = await getCars(store.page, limits.garage);
     renderCars(cars);
     updateCarsAmount(store.carsCount);
   });

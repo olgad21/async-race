@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { strings } from '../constants';
 import updateWinnersAmount from '../pages/winners/updateWinnersAmount';
 import '../view.css';

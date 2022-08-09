@@ -1,5 +1,5 @@
 import getWinners from '../../../API/getWinners';
-import { strings } from '../../constants';
+import { limits, strings } from '../../constants';
 import store from '../../store';
 import renderWinners from './renderWinners';
 
@@ -13,7 +13,7 @@ const renderNextBtn = () => {
   const nextBtn = paginationBtn(strings.nextBtn);
   nextBtn.addEventListener('click', async () => {
     store.winnersPage += 1;
-    const winnersonNextPage = await getWinners(store.winnersPage, 10);
+    const winnersonNextPage = await getWinners(store.winnersPage, limits.winners);
     renderWinners(winnersonNextPage);
   });
   return nextBtn;
@@ -24,7 +24,7 @@ const renderPrevBtn = () => {
   prevBtn.disabled = true;
   prevBtn.addEventListener('click', async () => {
     store.winnersPage -= 1;
-    const winnersOnPrevPage = await getWinners(store.winnersPage, 10);
+    const winnersOnPrevPage = await getWinners(store.winnersPage, limits.winners);
     renderWinners(winnersOnPrevPage);
   });
   return prevBtn;

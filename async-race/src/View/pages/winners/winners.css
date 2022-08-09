@@ -14,3 +14,11 @@
 .sort-wins, .sort-time {
   cursor: pointer;
 }
+
+.winners-container {
+  margin-bottom: 1.5rem;
+}
+
+button {
+  margin-right: 0.5rem;
+}

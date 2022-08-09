@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
 import createWinner from '../../../API/createWinner';
 import getCar from '../../../API/getCar.api';
 import getWinners from '../../../API/getWinners';
 import updateWinner from '../../../API/updateWinner';
+import { limits } from '../../constants';
 import store from '../../store';
 import renderWinners from '../winners/renderWinners';
 import updateWinnersAmount from '../winners/updateWinnersAmount';
@@ -24,7 +24,7 @@ const handleWinners = async (carBody: HTMLDivElement, id: number) => {
         await createWinner(store.winner[0]);
       }
       showWinnerMessage(carWinner.name, +time);
-      renderWinners(await getWinners(winnersPage, 10, sortBy, sortDirection));
+      renderWinners(await getWinners(winnersPage, limits.winners, sortBy, sortDirection));
       updateWinnersAmount();
     }
   }

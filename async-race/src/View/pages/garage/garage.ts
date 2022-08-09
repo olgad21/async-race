@@ -3,11 +3,12 @@ import getCars from '../../../API/getCars.api';
 import './garage.css';
 import renderPagination from './renderPagination';
 import store from '../../store';
+import { limits } from '../../constants';
 
 const renderGarage = async () => {
   const garageView = document.querySelector('.garage') as HTMLDivElement;
 
-  const cars = await getCars(store.page, 7);
+  const cars = await getCars(store.page, limits.garage);
   const itemsTotal = store.carsCount;
 
   const carsContainer = document.createElement('div');

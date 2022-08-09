@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import host, { path } from '../View/constants';
 import CarCreated from '../Interface/CarCreated';
 import CarReceived from '../Interface/CarReceived';

@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import WinnerReceived from '../../../Interface/WinnerReceived';
 import renderCarImage from '../garage/renderCarImage';
 import store from '../../store';
@@ -63,7 +61,6 @@ export const renderTableHeader = () => {
     renderedHeaderCells.push(cell);
     tableHeader?.append(cell);
   });
-  console.log(tableHeader, 123);
   return renderedHeaderCells;
 };
 

@@ -19,4 +19,16 @@ export const strings = {
   nextBtn: 'Next',
 };
 
+export const limits = {
+  garage: 7,
+  winners: 10,
+};
+
+export const urlParams = {
+  page: '_page',
+  limit: '_limit',
+  sort: '_sort',
+  order: '_order',
+};
+
 export default host;

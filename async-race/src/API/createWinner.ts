@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import WinnerReceived from '../Interface/WinnerReceived';
 import host, { path } from '../View/constants';
 

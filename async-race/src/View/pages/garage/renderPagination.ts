@@ -1,5 +1,5 @@
 import getCars from '../../../API/getCars.api';
-import { strings } from '../../constants';
+import { limits, strings } from '../../constants';
 import store from '../../store';
 import renderCars from './renderCars';
 
@@ -13,7 +13,7 @@ const renderNextBtn = () => {
   const nextBtn = paginationBtn(strings.nextBtn);
   nextBtn.addEventListener('click', async () => {
     store.page += 1;
-    const carsOnNextPage = await getCars(store.page, 7);
+    const carsOnNextPage = await getCars(store.page, limits.garage);
     renderCars(carsOnNextPage);
   });
   return nextBtn;
@@ -24,7 +24,7 @@ const renderPrevBtn = () => {
   prevBtn.disabled = true;
   prevBtn.addEventListener('click', async () => {
     store.page -= 1;
-    const carsOnPrevPage = await getCars(store.page, 7);
+    const carsOnPrevPage = await getCars(store.page, limits.garage);
     renderCars(carsOnPrevPage);
   });
   return prevBtn;

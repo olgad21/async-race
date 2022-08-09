@@ -4,6 +4,7 @@ import renderCars from './renderCars';
 import getCars from '../../../API/getCars.api';
 import updateCarsAmount from './updateCarsAmount';
 import store from '../../store';
+import { limits } from '../../constants';
 
 type CreateCarType = (obj: CarCreated) => Promise<CarReceived>;
 
@@ -32,12 +33,10 @@ const renderController = (name: string, callback: CreateCarType) => {
       name: carName.value,
       color: carColor.value,
     });
-    const cars = await getCars(store.page, 7);
+    const cars = await getCars(store.page, limits.garage);
     renderCars(cars);
     updateCarsAmount(store.carsCount);
   });
 };
 
 export default renderController;
-
-// вызов функций createcar. deletecar, getcars, getcar по кнопкам

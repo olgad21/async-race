@@ -1,7 +1,3 @@
-/* eslint-disable no-debugger */
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import getCars from '../../../API/getCars.api';
 import getWinners from '../../../API/getWinners';
 import store from '../../store';
 import renderSortedWinners from './renderSortedWinners';
@@ -9,6 +5,7 @@ import renderWinners from './renderWinners';
 import renderWinPagination from './renderWinPagination';
 import { renderTableHeader } from './renderWinner';
 import './winners.css';
+import { limits } from '../../constants';
 
 const renderWinnersView = async () => {
   const { winnersPage, sortBy, sortDirection } = store;
@@ -17,7 +14,7 @@ const renderWinnersView = async () => {
   winnersView.classList.add('winners', 'inactive');
   header?.after(winnersView);
 
-  const winners = await getWinners(winnersPage, 10, sortBy, sortDirection);
+  const winners = await getWinners(winnersPage, limits.winners, sortBy, sortDirection);
 
   const winnersTotal = store.winnersCount;
 

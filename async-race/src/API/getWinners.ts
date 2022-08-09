@@ -1,22 +1,20 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import WinnerReceived from '../Interface/WinnerReceived';
-import host, { path } from '../View/constants';
+import host, { path, urlParams } from '../View/constants';
 import store from '../View/store';
 
 const getWinners = async (page?: number, limit?: number, sort?: 'wins' | 'time', order?: 'ASC' | 'DESC') => {
   const url = new URL(`${host}${path.winners}`);
   if (page) {
-    url.searchParams.append('_page', page.toString());
+    url.searchParams.append(urlParams.page, page.toString());
   }
   if (limit) {
-    url.searchParams.append('_limit', limit.toString());
+    url.searchParams.append(urlParams.limit, limit.toString());
   }
   if (sort) {
-    url.searchParams.append('_sort', sort);
+    url.searchParams.append(urlParams.sort, sort);
   }
   if (order) {
-    url.searchParams.append('_order', order);
+    url.searchParams.append(urlParams.order, order);
   }
   const response = await fetch(url.toString(), {
     method: 'GET',

@@ -1,9 +1,8 @@
-/* eslint-disable no-debugger */
-/* eslint-disable no-console */
 import getWinners from '../../../API/getWinners';
 import store from '../../store';
 import renderWinners from './renderWinners';
 import { renderTableHeader } from './renderWinner';
+import { limits } from '../../constants';
 
 const sortByWins = () => {
   const tableHeader = document.querySelector('.table-header') as HTMLElement;
@@ -26,7 +25,7 @@ const sortByWins = () => {
         store.sortBy = sortingRule;
       }
 
-      const winners = await getWinners(winnersPage, 10, sortingRule, direction);
+      const winners = await getWinners(winnersPage, limits.winners, sortingRule, direction);
       renderWinners(winners);
       renderTableHeader();
     }

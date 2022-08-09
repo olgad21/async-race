@@ -1,16 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
 import CarReceived from '../../../Interface/CarReceived';
 import './car.css';
 import { strings } from '../../constants';
 import handleRemoveController from './handleDeleteController';
 import handleStartController from './handleStartController';
 import handleStopController from './handleStopController';
-import store from '../../store';
 import renderCarImage from './renderCarImage';
-import createWinner from '../../../API/createWinner';
-import getWinners from '../../../API/getWinners';
-import updateWinner from '../../../API/updateWinner';
 import handleWinners from './handleWinners';
 
 const renderBtn = (text: string) => {
