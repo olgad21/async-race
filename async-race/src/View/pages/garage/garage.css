@@ -2,6 +2,12 @@
   margin: 2rem 0;
 }
 
+.car-settings {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 .winner__popup {
   position: fixed;
   width: 100%;

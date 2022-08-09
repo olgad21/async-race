@@ -9,10 +9,11 @@ import updateWinnersAmount from '../winners/updateWinnersAmount';
 import showWinnerMessage from './showWinnerMessage';
 
 const handleWinners = async (carBody: HTMLDivElement, id: number) => {
+  const { sortBy, sortDirection, winnersPage } = store;
   const time = carBody.style.transitionDuration.slice(0, -1);
   const carWinner = await getCar(id);
 
-  if (carBody.style.marginLeft === '96%') {
+  if (carBody.style.marginLeft === '92%') {
     if (!store.winner.length) {
       store.winner.push({ id, wins: 1, time: +time });
       const winners = await getWinners();
@@ -23,7 +24,7 @@ const handleWinners = async (carBody: HTMLDivElement, id: number) => {
         await createWinner(store.winner[0]);
       }
       showWinnerMessage(carWinner.name, +time);
-      renderWinners(await getWinners(store.winnersPage, 10));
+      renderWinners(await getWinners(winnersPage, 10, sortBy, sortDirection));
       updateWinnersAmount();
     }
   }

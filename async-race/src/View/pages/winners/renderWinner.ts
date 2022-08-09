@@ -1,18 +1,17 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import getCar from '../../../API/getCar.api';
-import CarReceived from '../../../Interface/CarReceived';
 import WinnerReceived from '../../../Interface/WinnerReceived';
 import renderCarImage from '../garage/renderCarImage';
+import store from '../../store';
 
-const renderWinner = (winner: WinnerReceived, name?: string, color?: string) => {
+const renderWinner = (winner: WinnerReceived, name?: string, color?: string, index?: number) => {
   const { wins, time } = winner;
 
   const winnerWrapper = document.createElement('div');
   winnerWrapper.classList.add('winner-wrapper');
 
   const numberField = document.createElement('div');
-  numberField.innerHTML = '1';
+  numberField.innerHTML = `${index}` ?? '1';
   winnerWrapper.append(numberField);
 
   const colorField = document.createElement('div');
@@ -37,31 +36,35 @@ const renderWinner = (winner: WinnerReceived, name?: string, color?: string) => 
   return winnerWrapper;
 };
 
-export const tableHeader = () => {
-  const winnerWrapper = document.createElement('div');
-  winnerWrapper.classList.add('winner-wrapper');
+export const renderTableHeader = () => {
+  const { sortBy, sortDirection } = store;
+  const tableHeader = document.querySelector('.table-header') as HTMLDivElement;
 
-  const numberField = document.createElement('div');
-  numberField.innerHTML = 'Number';
-  winnerWrapper.append(numberField);
+  if (tableHeader) {
+    while (tableHeader.firstChild) {
+      tableHeader.removeChild(tableHeader.firstChild);
+    }
+  }
 
-  const colorField = document.createElement('div');
-  colorField.innerHTML = 'Color';
-  winnerWrapper.append(colorField);
+  const headerCells = ['number', 'color', 'name', 'wins', 'time'];
 
-  const nameField = document.createElement('div');
-  nameField.innerHTML = 'Name';
-  winnerWrapper.append(nameField);
+  const renderedHeaderCells: HTMLDivElement[] = [];
 
-  const winsField = document.createElement('div');
-  winsField.innerHTML = 'Wins';
-  winnerWrapper.append(winsField);
+  // render header cells
+  headerCells.forEach((col) => {
+    const cell = document.createElement('div');
+    cell.classList.add(`sort-${col}`);
+    cell.innerHTML = col === 'time' ? 'Best Time' : col;
 
-  const bestTime = document.createElement('div');
-  bestTime.innerHTML = 'Best Time';
-  winnerWrapper.append(bestTime);
+    if (col.toLowerCase() === sortBy) {
+      cell.innerHTML += sortDirection === 'ASC' ? '↑' : '↓';
+    }
 
-  return winnerWrapper;
+    renderedHeaderCells.push(cell);
+    tableHeader?.append(cell);
+  });
+  console.log(tableHeader, 123);
+  return renderedHeaderCells;
 };
 
 export default renderWinner;

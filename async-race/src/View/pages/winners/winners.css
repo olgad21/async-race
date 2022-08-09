@@ -1,10 +1,16 @@
-.winner-wrapper {
+.winner-wrapper, .table-header {
   width: 100%;
   display: flex;
 }
 
-.winner-wrapper > div {
+.winner-wrapper > div,
+.table-header > div {
   width: 15%;
   border: 1px black solid;
   text-align: center;
+  text-transform: capitalize;
+}
+
+.sort-wins, .sort-time {
+  cursor: pointer;
 }

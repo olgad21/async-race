@@ -1,28 +1,29 @@
-import renderWinner, { tableHeader } from './renderWinner';
+import renderWinner from './renderWinner';
 import WinnerReceived from '../../../Interface/WinnerReceived';
 import getCars from '../../../API/getCars.api';
 
 const renderWinners = async (winners: WinnerReceived[]) => {
   const cars = await getCars();
 
-  const winnersContainer = document.querySelector('.winners-container');
-  if (winnersContainer) {
-    while (winnersContainer.firstChild) {
-      winnersContainer.removeChild(winnersContainer.firstChild);
+  const tableBody = document.querySelector('.table-body');
+
+  if (tableBody) {
+    while (tableBody.firstChild) {
+      tableBody.removeChild(tableBody.firstChild);
     }
   }
+
   const renderedWinners: HTMLDivElement[] = [];
 
-  winners.forEach(async (winner) => {
+  winners.forEach(async (winner, index) => {
     const { id } = winner;
 
     const winnerCar = cars.find((car) => car.id === id);
-    const renderedWinner = renderWinner(winner, winnerCar?.name, winnerCar?.color);
+    const renderedWinner = renderWinner(winner, winnerCar?.name, winnerCar?.color, index + 1);
     renderedWinners.push(renderedWinner);
   });
 
-  winnersContainer?.prepend(tableHeader());
-  winnersContainer?.append(...renderedWinners);
+  tableBody?.append(...renderedWinners);
   return renderedWinners;
 };
 

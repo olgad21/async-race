@@ -11,6 +11,7 @@ const renderController = (name: string, callback: CreateCarType) => {
   const garageView = document.querySelector('.garage') as HTMLDivElement;
 
   const carSettings = document.createElement('div');
+  carSettings.classList.add('car-settings');
   garageView.prepend(carSettings);
 
   const createCarBtn = document.createElement('div');

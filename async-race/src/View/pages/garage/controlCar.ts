@@ -1,7 +1,7 @@
 const moveCar = (id: number, time: number) => {
   const car = document.querySelector(`[data-car-id='${id}']`) as HTMLDivElement | null;
   if (car) {
-    car.style.marginLeft = '96%';
+    car.style.marginLeft = '92%';
     car.style.transitionDuration = `${time.toString()}s`;
   }
 };

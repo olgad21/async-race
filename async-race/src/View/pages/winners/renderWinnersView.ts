@@ -1,26 +1,39 @@
+/* eslint-disable no-debugger */
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import getCars from '../../../API/getCars.api';
 import getWinners from '../../../API/getWinners';
 import store from '../../store';
+import renderSortedWinners from './renderSortedWinners';
 import renderWinners from './renderWinners';
 import renderWinPagination from './renderWinPagination';
+import { renderTableHeader } from './renderWinner';
 import './winners.css';
 
 const renderWinnersView = async () => {
+  const { winnersPage, sortBy, sortDirection } = store;
   const header = document.querySelector('header');
   const winnersView = document.createElement('div');
   winnersView.classList.add('winners', 'inactive');
   header?.after(winnersView);
 
-  const winners = await getWinners(store.winnersPage, 10);
+  const winners = await getWinners(winnersPage, 10, sortBy, sortDirection);
 
   const winnersTotal = store.winnersCount;
 
   const winnersContainer = document.createElement('div');
   winnersContainer.classList.add('winners-container');
+
+  const tableHeader = document.createElement('div');
+  tableHeader?.classList.add('table-header');
+
+  const tableBody = document.createElement('div');
+  tableBody?.classList.add('table-body');
+  winnersContainer.append(tableHeader, tableBody);
+
   winnersView.append(winnersContainer);
 
+  renderTableHeader();
   await renderWinners(winners);
 
   const pageTitle = document.createElement('h1');
@@ -35,6 +48,8 @@ const renderWinnersView = async () => {
 
   const pagination = renderWinPagination();
   winnersView.append(pagination);
+
+  renderSortedWinners();
 };
 
 export default renderWinnersView;

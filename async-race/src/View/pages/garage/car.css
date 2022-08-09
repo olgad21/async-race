@@ -5,12 +5,16 @@
 
 .car-buttons {
   display: flex;
+  align-items: center;
 }
 
 .car-track-wrapper {
-  width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.car-buttons p {
+  margin: 0;
 }
 
 .car-track-controllers {
@@ -24,9 +28,13 @@
   position: relative;
 }
 
+input {
+  margin-right: 0.5rem;
+}
+
 .car-body {
-  width: 8rem;
-  height: 4rem;
+  width: 12%;
+  height: 5rem;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -35,6 +43,9 @@
 
 .green-btn {
   border: solid green;
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.3rem;
 }
 
 .flag {

@@ -4,7 +4,7 @@ import WinnerReceived from '../Interface/WinnerReceived';
 import host, { path } from '../View/constants';
 import store from '../View/store';
 
-const getWinners = async (page?: number, limit?: number, sort?: 'id' | 'wins' | 'time', order?: 'ASC' | 'DESC') => {
+const getWinners = async (page?: number, limit?: number, sort?: 'wins' | 'time', order?: 'ASC' | 'DESC') => {
   const url = new URL(`${host}${path.winners}`);
   if (page) {
     url.searchParams.append('_page', page.toString());
@@ -13,10 +13,10 @@ const getWinners = async (page?: number, limit?: number, sort?: 'id' | 'wins' | 
     url.searchParams.append('_limit', limit.toString());
   }
   if (sort) {
-    url.searchParams.append('_limit', sort);
+    url.searchParams.append('_sort', sort);
   }
   if (order) {
-    url.searchParams.append('_limit', order);
+    url.searchParams.append('_order', order);
   }
   const response = await fetch(url.toString(), {
     method: 'GET',

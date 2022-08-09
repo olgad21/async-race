@@ -9,6 +9,8 @@ type StoreType = {
   winnersCount: number,
   carsOnPage: CarReceived[],
   winnersPage: number,
+  sortBy: 'wins' | 'time',
+  sortDirection: 'ASC' | 'DESC',
 };
 
 const store: StoreType = {
@@ -19,6 +21,8 @@ const store: StoreType = {
   winner: [],
   winnersCount: 0,
   winnersPage: 1,
+  sortDirection: 'DESC',
+  sortBy: 'wins',
 };
 
 export default store;
