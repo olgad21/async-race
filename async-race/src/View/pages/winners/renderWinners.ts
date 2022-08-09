@@ -20,6 +20,7 @@ const renderWinners = async (winners: WinnerReceived[]) => {
 
     const winnerCar = cars.find((car) => car.id === id);
     const renderedWinner = renderWinner(winner, winnerCar?.name, winnerCar?.color, index + 1);
+    renderedWinner.setAttribute('data-winner-id', id.toString());
     renderedWinners.push(renderedWinner);
   });
 
