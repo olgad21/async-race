@@ -19,7 +19,11 @@ const handleWinners = async (carBody: HTMLDivElement, id: number) => {
       const winners = await getWinners();
       const winner = winners.find((win) => win.id === id);
       if (winner) {
-        await updateWinner({ wins: winner.wins + 1, time: +time }, id);
+        if (+time > winner.time) {
+          await updateWinner({ wins: winner.wins + 1, time: winner.time }, id);
+        } else {
+          await updateWinner({ wins: winner.wins + 1, time: +time }, id);
+        }
       } else {
         await createWinner(store.winner[0]);
       }
