@@ -1,4 +1,5 @@
 import deleteCar from '../../../API/deleteCar.api';
+import deleteWinner from '../../../API/deleteWinner';
 import store from '../../store';
 import updateWinnersAmount from '../winners/updateWinnersAmount';
 import updateCarsAmount, { getCarsAmount } from './updateCarsAmount';
@@ -16,6 +17,7 @@ const handleRemoveController = async (id: number) => {
   winnerDeleted?.remove();
   store.winnersCount -= 1;
   updateWinnersAmount();
+  await deleteWinner(id);
 };
 
 export default handleRemoveController;
