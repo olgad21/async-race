@@ -1,4 +1,4 @@
-const host = 'http://127.0.0.1:3000';
+const host = 'https://olgad21-asyc-race-api.vercel.app';
 
 export const path = {
   garage: '/garage',
